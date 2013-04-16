@@ -3,6 +3,7 @@
         "batch": "0.3.2", 
         "cheerio": "0.10.8", 
         "coffee-script": "1.6.2", 
+        "ejs": "0.8.3",
         "express": "3.1.0", 
         "request": "2.16.6"
     }, 
