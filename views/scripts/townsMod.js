@@ -1,60 +1,3 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Clasher</title>
-  </head>
-  <body>
-    <h1>Clasher</h1>
-    Are there any events on this date:
-    <form action='/'>
-    <label for='start'>Date of Event : </label>
-      <input id='startDate' type="date"name='start' value='<%= start %>' placeholder='Date'>
-      <label for='country'>Country : </label>
-      <select name='country' id='countries'>
-        <% for (var c = 0; c < allCountries.length; c++){ %>
-          <% current_country = allCountries[c] %>
-          <option <% if(current_country === country){ %>selected='selected'<% } %>><%= current_country %></option>
-        <% } %>
-      </select>
-      <label for='city'>
-      City of Event : 
-      </label>
-      <select name='city' id='towns'>
-        <% for (var c = 0; c < allCities.length; c++){ %>
-          <% current_city = allCities[c] %>
-          <option <% if(current_city === city){ %>selected='selected'<% } %>><%= current_city %></option>
-        <% } %>
-      </select>
-      <label for='tag'>
-      Event Tag : 
-      </label>
-      <select name='tag' id='tagged'>
-        <option></option>
-        <% for (var t = 0; t < allTags.length; t++){ %>
-          <% current_tag = allTags[t] %>
-          <option <% if(current_tag === tag){ %>selected='selected'<% } %>><%= current_tag %></option>
-        <% } %>
-      </select>
-      <input type='submit'>
-    </form>
-    <% if(events.length > 0){ %>
-      <ul>
-        <% for (var e = 0; e < events.length; e++){ %>
-          <li>
-            <% event = events[e] %>
-            <h2><a href='<%= event.url%>'><%= event.title %></a></h2>
-            <%= event.country %> - <%= event.city %>
-          </li>
-        <% } %>
-      </ul>
-    <% } else { %>
-      <p>No Events on <%= start %></p>
-    <% } %>
-  </body>
-  <footer>
-
-<script type="text/javascript">	
-var eventJson =   <%-jsonDoc%>;
 //A script to modify the towns as the country is selected such that it becomes impossible to select a town outside that country.
 
 var id = 'countries';
@@ -170,8 +113,3 @@ function contains(a, obj) {
 	}
 	return false;
 }
-
-</script>
-
-  </footer>
-</html>

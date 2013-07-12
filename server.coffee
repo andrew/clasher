@@ -1,13 +1,11 @@
 checks  = require './check'
 express = require 'express'
-
 app = express()
-
+eventness = require './events.json'
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + "/public/"))
 app.use(express.bodyParser())
-
 app.get "/", (req,res) ->
   start= req.query.start
   country = req.query.country || null
@@ -26,6 +24,7 @@ app.get "/", (req,res) ->
     allTags: checks.allTags()
     allCities: checks.allCities()
     allCountries: checks.allCountries()
+    jsonDoc : JSON.stringify eventness
 
 app.get "/free", (req,res) ->
   start = req.query.start
@@ -46,6 +45,7 @@ app.get "/free", (req,res) ->
     allTags: checks.allTags()
     allCities: checks.allCities()
     allCountries: checks.allCountries()
+    jsonDoc : JSON.stringify eventness
 
 port = process.env.PORT || 8080
 app.listen port

@@ -24,6 +24,15 @@ Report Issues/Feature requests on [GitHub Issues](http://github.com/andrew/clash
  * Add tests for it. This is important so I don't break it in a future version unintentionally.
  * Send me a pull request. Bonus points for topic branches.
 
+## To Run
+ * Install Node
+ * Install Coffee (npm install coffee)
+ * Run NPM install
+ * Navigate to clasher folder
+ * Run scraper.coffee
+ * Run server.coffee
+ * Go to browser and open localhost:8080
+ 
 ## Copyright
 
 Copyright (c) 2013 Andrew Nesbitt. See [LICENSE](https://github.com/andrew/clasher/blob/master/LICENSE) for details.

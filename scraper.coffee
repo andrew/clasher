@@ -62,6 +62,6 @@ scrape = (year, cb) ->
     batch.end (err, urls) ->
       cb(err, urls.concat.apply([], urls))
 
-scrape 2013, (err, events) ->
+scrape new Date().getFullYear(), (err, events) ->
   fs.writeFileSync('events.json', JSON.stringify(events, null, 2) + '\n');
   console.log 'saved to events.json'
