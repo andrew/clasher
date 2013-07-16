@@ -54,7 +54,6 @@
   <footer>
 
 <script type="text/javascript">	
-var eventJson =   <%-jsonDoc%>;
 //A script to modify the towns as the country is selected such that it becomes impossible to select a town outside that country.
 
 var id = 'countries';
@@ -63,28 +62,8 @@ var towns = 'towns';
 //id of towns dropdown
 var tags = 'tagged';
 //id of tags dropdown
-var countryArr = [];
-var tagArr = [];
-for (var i = 0; i < eventJson.length; i++) {
-	var countToUse = eventJson[i].country;
-	if (countToUse.length > 0) {
-		if (eventJson[i].country in countryArr == false) {
-			countryArr[countToUse] = new Array();
-		}
-		if (contains(countryArr[countToUse], eventJson[i].city) == false) {
-			countryArr[countToUse].push(eventJson[i].city);
-		}
-		if (contains(tagArr, eventJson[i].city) == false) {
-			tagArr[eventJson[i].city] = new Array();
-		}
-		for (var z in eventJson[i].tags) {
-			if (contains(tagArr[eventJson[i].city], eventJson[i].tags[z]) == false) {
-				tagArr[eventJson[i].city].push(eventJson[i].tags[z])
-			}
-		}
-	}
-}
-
+var countryArr = <%-cityMap%>;
+var tagArr = <%-tagsMap%>; 
 if (document.getElementById(towns).value != "") {
 	var citSel = document.getElementById(towns).value;
 	editor();
@@ -164,7 +143,7 @@ function editor() {
 
 function contains(a, obj) {
 	for (var i = 0; i < a.length; i++) {
-		if (a[i] === obj) {
+		if (a[i] == obj) {
 			return true;
 		}
 	}

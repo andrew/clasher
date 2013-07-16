@@ -65,3 +65,5 @@ scrape = (year, cb) ->
 scrape new Date().getFullYear(), (err, events) ->
   fs.writeFileSync('events.json', JSON.stringify(events, null, 2) + '\n');
   console.log 'saved to events.json'
+  require './jsonparse.coffee'
+
