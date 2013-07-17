@@ -1,71 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Clasher</title>
-  </head>
-  <body>
-    <h1>Clasher</h1>
-    Show me clash-free days:
-    <form action='/free'>
-    <label for='start'>Start Range of dates : </label>
-      <input type='date' name='start' value='<%= start %>' placeholder='Start Date'>
-      <label for='end'>End Range of dates : </label>
-      <input type='date' name='end' value='<%= end %>' placeholder='End Date'>
-         <label for='country'>Country : </label>
-      <select name='country' id='countries'>
-        <% for (var c = 0; c < allCountries.length; c++){ %>
-          <% current_country = allCountries[c] %>
-          <option <% if(current_country === country){ %>selected='selected'<% } %>><%= current_country %></option>
-        <% } %>
-      </select>
-         <label for='city'>
-      City of Event : 
-      </label>
-      <select name='city' id='towns'>
-        <% for (var c = 0; c < allCities.length; c++){ %>
-          <% current_city = allCities[c] %>
-          <option <% if(current_city === city){ %>selected='selected'<% } %>><%= current_city %></option>
-        <% } %>
-      </select>
-       <label for='tag'>
-      Event Tag : 
-      </label>
-      <select name='tag'id='tagged'>
-        <option></option>
-        <% for (var t = 0; t < allTags.length; t++){ %>
-          <% current_tag = allTags[t] %>
-          <option <% if(current_tag === tag){ %>selected='selected'<% } %>><%= current_tag %></option>
-        <% } %>
-      </select>
-      <input type='submit'>
-    </form>
-    <% if(days.length > 0){ %>
-      <ul>
-        <% for (var d = 0; d < days.length; d++){ %>
-          <li>
-            <%= days[d] %>
-          </li>
-        <% } %>
-      </ul>
-    <% } else { %>
-      <p>No clash-free days between on <%= start %> and <%= end %></p>
-    <% } %>
-    Events: <%= events %>
-    <% if(events.length > 0){ %>
-      <ul>
-        <% for (var e = 0; e < events.length; e++){ %>
-          <li>
-            <% event = events[e] %>
-            <h2><a href='<%= event.url%>'><%= event.title %></a></h2>
-            <%= event.country %> - <%= event.city %>
-          </li>
-        <% } %>
-      </ul>
-    <% } %>
-  </body>
-  <footer>
-  <script type="text/javascript">	
- //A script to modify the towns as the country is selected such that it becomes impossible to select a town outside that country.
+//A script to modify the towns as the country is selected such that it becomes impossible to select a town outside that country.
 //Script file for code which is in the index.ejs and free.ejs files.
 var id = 'countries';
 //id of country dropdown
@@ -182,8 +115,3 @@ function contains(a, obj) {
 	return false;
 }
 
-
-
-</script>
-  </footer>
-</html>
