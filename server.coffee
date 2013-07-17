@@ -1,13 +1,21 @@
 checks  = require './check'
 express = require 'express'
-
+fs = require 'fs'
 app = express()
+eventness = require './events.json'
 
+if fs.existsSync('./cityTags.json') && fs.existsSync('./countryCities')
+  tags = require './cityTags.json'
+  cities = require './countryCities.json'
+
+else
+  tags = null
+  cities = null
+  
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + "/public/"))
 app.use(express.bodyParser())
-
 app.get "/", (req,res) ->
   start= req.query.start
   country = req.query.country || null
@@ -26,6 +34,8 @@ app.get "/", (req,res) ->
     allTags: checks.allTags()
     allCities: checks.allCities()
     allCountries: checks.allCountries()
+    tagsMap : JSON.stringify tags
+    cityMap : JSON.stringify cities
 
 app.get "/free", (req,res) ->
   start = req.query.start
@@ -46,7 +56,8 @@ app.get "/free", (req,res) ->
     allTags: checks.allTags()
     allCities: checks.allCities()
     allCountries: checks.allCountries()
-
+    tagsMap : JSON.stringify tags
+    cityMap : JSON.stringify cities
 port = process.env.PORT || 8080
 app.listen port
 console.log "Listening on Port '#{port}'"

@@ -24,6 +24,14 @@ Report Issues/Feature requests on [GitHub Issues](http://github.com/andrew/clash
  * Add tests for it. This is important so I don't break it in a future version unintentionally.
  * Send me a pull request. Bonus points for topic branches.
 
+## To Run
+ * Install Node
+ * Run NPM install in clasher directory
+ * Run scraper.coffee
+ * Go to browser and open localhost:8080 once the scraper has finished.
+ * / allows the user to search for a particular event on date.
+ * /free allows the user to search for events in a particular date set.
+ 
 ## Copyright
 
 Copyright (c) 2013 Andrew Nesbitt. See [LICENSE](https://github.com/andrew/clasher/blob/master/LICENSE) for details.
