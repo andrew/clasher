@@ -13,10 +13,8 @@ contains = (a, obj) ->
   false
 fs = require("fs")
 eventJson = require("./events.json")
-id = "countries"
-towns = "towns"
-countryArr = {}
-tagArr = {}
+countryArr = []
+tagArr = []
 i = 0
 
 while i < eventJson.length
@@ -31,16 +29,27 @@ while i < eventJson.length
       tagArr[eventJson[i].city].push eventJson[i].tags[z]  if contains(tagArr[eventJson[i].city], eventJson[i].tags[z]) is false
       z++
   if i is eventJson.length - 1
-    fs.writeFile "countryCities.json", JSON.stringify(countryArr, null, 4), (err) ->
+    count = {}
+    tag = {}
+    countryArr.sort()
+    for k of countryArr
+      countryArr[k].sort
+      count[k] = countryArr[k]
+    tagArr.sort()
+    for k of tagArr
+      tagArr[k].sort
+      tag[k] = tagArr[k]
+    fs.writeFile "countryCities.json", JSON.stringify(count, null, 4), (err) ->
       if err
         console.log "Error writing country -> city mapping!"
       else
         console.log "country -> city mapping saved!"
 
-    fs.writeFile "cityTags.json", JSON.stringify(tagArr, null, 4), (err) ->
+    fs.writeFile "cityTags.json", JSON.stringify(tag, null, 4), (err) ->
       if err
         console.log "Error writing city -> tag mapping!"
+        require("./server.coffee");
       else
         console.log "city -> tag mapping saved!"
-    #require("./server.coffee");
+        require("./server.coffee");
   i++

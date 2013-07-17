@@ -26,12 +26,11 @@ Report Issues/Feature requests on [GitHub Issues](http://github.com/andrew/clash
 
 ## To Run
  * Install Node
- * Install Coffee (npm install coffee)
- * Run NPM install
- * Navigate to clasher folder
+ * Run NPM install in clasher directory
  * Run scraper.coffee
- * Run server.coffee
- * Go to browser and open localhost:8080
+ * Go to browser and open localhost:8080 once the scraper has finished.
+ * / allows the user to search for a particular event on date.
+ * /free allows the user to search for events in a particular date set.
  
 ## Copyright
 

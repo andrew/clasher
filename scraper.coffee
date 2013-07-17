@@ -2,9 +2,8 @@ request = require 'request'
 cheerio = require 'cheerio'
 Batch   = require 'batch'
 fs      = require 'fs'
-
+test = require './tests/collectionsTest.js'
 months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
-
 loadURLs = (year, cb) ->
   batch = new Batch
   # batch.concurrency 4
@@ -65,5 +64,10 @@ scrape = (year, cb) ->
 scrape new Date().getFullYear(), (err, events) ->
   fs.writeFileSync('events.json', JSON.stringify(events, null, 2) + '\n');
   console.log 'saved to events.json'
-  require './jsonparse.coffee'
-
+  test = require './tests/collectionsTest.coffee'
+  if test == true
+    require "./jsonparse.coffee"
+  else
+    console.log "The scraper has returned data inconsistent with the format necessary for extra code."
+    console.log "Please see tests/collectionsTest.js for more details."
+    require './server.coffee'

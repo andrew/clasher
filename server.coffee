@@ -1,10 +1,17 @@
 checks  = require './check'
 express = require 'express'
+fs = require 'fs'
 app = express()
 eventness = require './events.json'
-tags = require './cityTags.json'
-cities = require './countryCities.json'
 
+if fs.existsSync('./cityTags.json') && fs.existsSync('./countryCities')
+  tags = require './cityTags.json'
+  cities = require './countryCities.json'
+
+else
+  tags = null
+  cities = null
+  
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + "/public/"))
@@ -38,8 +45,6 @@ app.get "/free", (req,res) ->
   tag = req.query.tag || null
   days = checks.emptyDays(start, end, country, city, tag)
   events = checks.checkDate(start, end, country, city, tag)
-  tagsMap : JSON.stringify tags
-  cityMap : JSON.stringify cities
   res.render 'free',
     start: start,
     end: end,
@@ -51,8 +56,8 @@ app.get "/free", (req,res) ->
     allTags: checks.allTags()
     allCities: checks.allCities()
     allCountries: checks.allCountries()
-    jsonDoc : JSON.stringify eventness
-console.log eventness.length;
+    tagsMap : JSON.stringify tags
+    cityMap : JSON.stringify cities
 port = process.env.PORT || 8080
 app.listen port
 console.log "Listening on Port '#{port}'"
